@@ -144,7 +144,7 @@ _위의 예제에서는 Gus가 덤앤더머 영화를 좋아할 것이고 Color 
 Note that some movies for example, Ocean’s 11 and users for example, Dave would be characterized as fairly neutral on these two dimensions.
 _영화 오션스11와 유저 Dave는 현재 2개의 차원 위에서는 공평하게 중립을 유지함을 보이는 것에 주목할 필요가 있다._
 
-
+<br>
 
 # Matrix Factorization Methods
 
@@ -187,5 +187,65 @@ _만약 explicit feedback을 수집하거나 사용하지 못한다면, 추천�
 Implicit feedback usually denotes the presence or absence of an event, so it is typically represented by a densely filled matrix.
 _Implicit feedback은 일반적으로 어떤 특정 이벤트(시청, 구매)를 나타내므로 행렬을 거의 가득 채워진 형태로 보여진다 (희소하지 않음)_
 
+<br>
 
 # A basic matrix factorization model
+
+Matrix factorization models map both users and items to a joint latent factor space of dimensionality $f$, such that user-item interactions are modeled as inner products in that space.
+_Matrix factorization은 유저와 아이템 모두 $f$ 차원을 갖는 잠재공간(joint latent space)에 매핑하여, 유저-아이템 상호작용을 잠재공간에서의 내적으로 모델링한다._
+
+Accordingly, each item $i$ is associated with a vector $q_i \in \mathbb{R}^f$ , and each user $u$ is associated with a vector $p_u \in \mathbb{R}^f$ .
+_따라서, 각 아이템 $i$ 는 벡터 $q_i \in \mathbb{R}^f$ 로 표현되며 유저 $u$ 는 벡터 $p_u \in \mathbb{R}^f$ 로 표현한다._
+
+For a given item $i$, the elements of $q_i$ measure the extent to which the item possesses those factors, positive or negative. 
+_주어진 아이템 $i$ 에 대해서, $q_i$ 의 원소들이 말하는 것은 $f$ 개의 잠재요소에 대해 positive 한지, negative 한지 나타낸다._
+
+For a given user $u$, the elements of $p_u$ measure the extent of interest the user has in items that are high on the corresponding factors, again, positive or negative. 
+_어떤 유저 $u$ 에 대해 $p_u$ 의 원소는 아이템과 마찬가지로 여러 아이템들에 대한 잠재요소들 (ex. 전자기기, 색상 등..)을 좋아하는지 싫어하는지의 값을 나타낸다._
+
+The resulting dot product, $q_i ^\top p_u$ , captures the interaction between user $u$ and item $i$  -the user’s overall interest in the item’s characteristics.
+_두 잠재벡터의 내적 $q_i^\top p_u$ 는 유저 $u$와 아이템 $i$ 사이의 상호작용을 계산한다._
+
+This approximates user $u$’s rating of item $i$, which is denoted by $r_{ui}$, leading to the estimate $\hat{r}_{ui} = q_i^\top p_u$.
+_위의 계산된 값은 유저 $u$가 아이템 $i$에 내릴 평점인 $r_{ui}$를 의미하며, 이것이 실제 평점을 추정하도록 만들어야 한다._
+
+The major challenge is computing the mapping of each item and user to factor vectors $q_i, p_u \in \mathbb{R}^f$.
+*이제 주요 과제는 유저 잠재벡터와 아이템 잠재벡터를 학습하는 것이다.*
+
+After the recommender system completes this mapping, it can easily estimate the rating a user will give to any item by using Equation 1.
+*만약 추천시스템이 각 잠재벡터를 완전하게 잘 학습했다면, 이후 평점예측은 아주 간단하게 내적으로 계산할 수 있다.*
+
+Such a model is closely related to singular value decomposition (SVD), a well-established technique for identifying latent semantic factors in information retrieval.
+_위 모델은 Singular Value Decomposition (SVD)와 상당히 밀접한 관계를 갖고 있으며, SVD는 정보 추출 분야에서 잠재 요인을 식별하는 기술이다._
+
+Applying SVD in the collaborative filtering domain requires factoring the user-item rating matrix. 
+_SVD를 협업 필터링 도메인에 적용하는 것은 유저-아이템 평점 행렬을 분해하는 과정이 필요하다._
+
+This often raises difficulties due to the high portion of missing values caused by sparseness in the user-item ratings matrix. 
+_위의 분해하는 과정은 행렬에 너무 많은 결측치가 존재하기에 어려움이 존재한다._
+
+Conventional SVD is undefined when knowledge about the matrix is incomplete. 
+_전통적인 SVD방식은 이와 같은 행렬에 결측값이 매우 많이 존재한다면 정의되지 않는다._
+
+Moreover, carelessly addressing only the relatively few known entries is highly prone to overfitting. 
+_그렇다고, 값이 존재하는 entry에 대해서만 학습을 진행하게 되면 overfitting이 될 확률이 높아진다._
+
+Earlier systems relied on imputation to fill in missing ratings and make the rating matrix dense.
+_그래서 일반적인 초기의 머신러닝 모델들은 dense한 행렬을 만들기 위해 결측값들을 imputation 해주었다._
+
+However, imputation can be very expensive as it significantly increases the amount of data. 
+_하지만, 데이터의 양이 늘어날 수록 imputation을 하는데 드는 비용도 매우 커지게 되었다._
+
+In addition, inaccurate imputation might distort the data considerably.
+_추가로 부정확한 imputation은 오히려 데이터를 왜곡하여 성능을 크게 저하시켰다._
+
+Hence, more recent works suggested modeling directly the observed ratings only, while avoiding overfitting through a regularized model. 
+_따라서 최근의 연구는 평점 데이터가 있는 것만 다루되, 규제화를 통하여 overfitting을 피하는 방법을 고안하였다._
+
+To learn the factor vectors ($p_u$ and $q_i$), the system minimizes the regularized squared error on the set of known ratings:
+_잠재 벡터를 학습하기 위해서, 추천시스템은 존재하는 평점 데이터에 대해서만 규제화 term이 추가된 예측 오차제곱합을 줄이도록 학습을 한다._
+$$ \min_{q*, p*} \sum_{(u, i) \in \mathcal{K}} (r_{ui}-q_i^\top p_u)^2 + \lambda (\| q_i\|^2 + \|p_u\|^2)$$
+
+Here, $\mathcal{K}$ is the set of the ($u,i$) pairs for which $r_{ui}$ is known (the training set).
+_여기서 $\mathcal{K}$ 가 의미하는 것은, 실제 존재하는 평점에 대한 (유저, 아이템)쌍을 말한다. (학습데이터셋 에서)_
+

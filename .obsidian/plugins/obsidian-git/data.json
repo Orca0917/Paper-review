@@ -1,6 +1,6 @@
 {
-  "commitMessage": "vault backup: {{date}}",
-  "commitDateFormat": "YYYY-MM-DD HH:mm:ss",
+  "commitMessage": "(docs) {{date}} paper review update",
+  "commitDateFormat": "MM-DD",
   "autoSaveInterval": 0,
   "autoPushInterval": 0,
   "autoPullInterval": 0,
@@ -8,12 +8,12 @@
   "disablePush": false,
   "pullBeforePush": true,
   "disablePopups": false,
-  "listChangedFilesInMessageBody": false,
+  "listChangedFilesInMessageBody": true,
   "showStatusBar": true,
   "updateSubmodules": false,
   "syncMethod": "merge",
-  "customMessageOnAutoBackup": false,
-  "autoBackupAfterFileChange": false,
+  "customMessageOnAutoBackup": true,
+  "autoBackupAfterFileChange": true,
   "treeStructure": false,
   "refreshSourceControl": false,
   "basePath": "",
@@ -47,9 +47,9 @@
     },
     "textColorCss": "var(--text-muted)",
     "ignoreWhitespace": false,
-    "gutterSpacingFallbackLength": 5,
+    "gutterSpacingFallbackLength": 12,
     "lastShownAuthorDisplay": "initials",
     "lastShownDateTimeFormatOptions": "date"
   },
-  "autoCommitMessage": "vault backup: {{date}}"
+  "autoCommitMessage": "(docs) {{date}} paper review update"
 }

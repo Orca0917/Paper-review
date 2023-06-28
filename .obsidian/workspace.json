@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Recommender System/Matrix Factorization techniques for recommender systems.md",
+                "file": "Text-To-Speech/Tacotron; Towards End-to-End Speech Synthesis.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Recommender System/Matrix Factorization techniques for recommender systems.md",
+                "file": "Text-To-Speech/Tacotron; Towards End-to-End Speech Synthesis.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Recommender System/Matrix Factorization techniques for recommender systems.md",
+                "file": "Text-To-Speech/Tacotron; Towards End-to-End Speech Synthesis.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,11 +125,20 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Recommender System/Matrix Factorization techniques for recommender systems.md"
+                "file": "Text-To-Speech/Tacotron; Towards End-to-End Speech Synthesis.md"
               }
             }
+          },
+          {
+            "id": "380108a72f79822f",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
+            }
           }
-        ]
+        ],
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -143,18 +152,21 @@
       "canvas:새 캔버스 만들기": false,
       "daily-notes:오늘의 데일리 노트 열기": false,
       "templates:템플릿 삽입": false,
-      "command-palette:명령어 팔레트 열기": false
+      "command-palette:명령어 팔레트 열기": false,
+      "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
   "active": "715ed70115442f2c",
   "lastOpenFiles": [
+    "Recommender System/Matrix Factorization techniques for recommender systems.md",
+    "desktop.ini",
+    "Text-To-Speech/Tacotron; Towards End-to-End Speech Synthesis.md",
+    "README.md",
     "무제 파일.canvas",
     "2023-06-28.md",
-    "Recommender System/Matrix Factorization techniques for recommender systems.md",
     "resources/MF_Figure2.png",
     "resources/MF_Figure1.png",
     "Pasted image 20230628013301.png",
-    "Text-To-Speech/Tacotron; Towards End-to-End Speech Synthesis.md",
     "무제 파일.md",
     "N.md",
     "Computer Vision",
