@@ -1,14 +1,14 @@
 {
   "main": {
-    "id": "a7ddb7023d4b6aad",
+    "id": "8a2c3c399e3ed38d",
     "type": "split",
     "children": [
       {
-        "id": "52bd62ed2dfd2813",
+        "id": "6466eee88837c03c",
         "type": "tabs",
         "children": [
           {
-            "id": "9b29dc459a3742f2",
+            "id": "446d423bae8e703f",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -25,11 +25,11 @@
     "direction": "vertical"
   },
   "left": {
-    "id": "e2ecc35823d4d713",
+    "id": "3202eef8bd0c1bfb",
     "type": "mobile-drawer",
     "children": [
       {
-        "id": "d3313c6fbb34f5ff",
+        "id": "f524bd7b26f0c791",
         "type": "leaf",
         "state": {
           "type": "file-explorer",
@@ -39,7 +39,7 @@
         }
       },
       {
-        "id": "e603268813ba2395",
+        "id": "5c1fe4f44dcb8450",
         "type": "leaf",
         "state": {
           "type": "search",
@@ -54,7 +54,7 @@
         }
       },
       {
-        "id": "679cdc167a446c32",
+        "id": "70259d43e70404fd",
         "type": "leaf",
         "state": {
           "type": "tag",
@@ -65,7 +65,7 @@
         }
       },
       {
-        "id": "4b52f8425551feaa",
+        "id": "b1d402ab8ee387b0",
         "type": "leaf",
         "state": {
           "type": "bookmarks",
@@ -76,11 +76,11 @@
     "currentTab": 0
   },
   "right": {
-    "id": "380c99d74e15b585",
+    "id": "96503642d620e4d1",
     "type": "mobile-drawer",
     "children": [
       {
-        "id": "fe1bf61ad1061a95",
+        "id": "3825b943bae297fd",
         "type": "leaf",
         "state": {
           "type": "backlink",
@@ -97,7 +97,7 @@
         }
       },
       {
-        "id": "05d67f6e68277694",
+        "id": "fd5bc61663e87de9",
         "type": "leaf",
         "state": {
           "type": "outgoing-link",
@@ -109,7 +109,7 @@
         }
       },
       {
-        "id": "c0e1c1533d25a7a7",
+        "id": "f942f38d8ce31453",
         "type": "leaf",
         "state": {
           "type": "outline",
@@ -131,12 +131,17 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "9b29dc459a3742f2",
+  "active": "446d423bae8e703f",
   "lastOpenFiles": [
     "Tacotron; Towards End-to-End Speech Synthesis.md",
-    "README.md",
+    "Recommender System/Matrix Factorization techniques for recommender systems.md",
     "Matrix Factorization techniques for recommender systems.md",
+    "README.md",
+    "Recommender System",
+    "resources/MF_Figure1.png",
+    "resources",
+    "resources/MF_Figure2.png",
     "Text-To-Speech/Tacotron; Towards End-to-End Speech Synthesis.md",
-    "Recommender System/Matrix Factorization techniques for recommender systems.md"
+    "Text-To-Speech"
   ]
 }
