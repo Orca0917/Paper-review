@@ -407,7 +407,7 @@ _우리는 Tacotron을 internal North American English데이터셋을 사용하�
 The phrases are text normalized, e.g. “16” is converted to “sixteen”.
 _각 단어들은 전처리를 적용하였다. 16을 “십육”으로 변경_
 
-![[Tactron_Table1.png| 800]]
+![[Tacotron_Table1.png| 800]]
 ## 5.1 Ablation Analysis
 
 We conduct a few ablation studies to understand the key components in our model.
