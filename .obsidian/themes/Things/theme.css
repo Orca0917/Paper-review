@@ -279,7 +279,7 @@ body.theme-dark.is-mobile {
   --atom-blue: #61afef;
   --atom-yellow: #e5c07b;
 
-  
+  --em-color: var(--yellow);
 }
 
 body.is-mobile.theme-dark.mobile-black-background {

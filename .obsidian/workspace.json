@@ -4,19 +4,15 @@
     "type": "split",
     "children": [
       {
-        "id": "37ebdbc6035f536b",
+        "id": "0595717e3d426bdd",
         "type": "tabs",
         "children": [
           {
-            "id": "715ed70115442f2c",
+            "id": "2038dba3577f13f4",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Text-To-Speech/Tacotron; Towards End-to-End Speech Synthesis.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
         ]
@@ -65,11 +61,12 @@
               "state": {}
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 231.5
   },
   "right": {
     "id": "442d5bf4c317f96d",
@@ -85,7 +82,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Text-To-Speech/Tacotron; Towards End-to-End Speech Synthesis.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +98,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Text-To-Speech/Tacotron; Towards End-to-End Speech Synthesis.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -124,9 +119,7 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "Text-To-Speech/Tacotron; Towards End-to-End Speech Synthesis.md"
-              }
+              "state": {}
             }
           },
           {
@@ -136,14 +129,21 @@
               "type": "advanced-tables-toolbar",
               "state": {}
             }
+          },
+          {
+            "id": "92a9af65a0c3880c",
+            "type": "leaf",
+            "state": {
+              "type": "git-history-view",
+              "state": {}
+            }
           }
         ],
         "currentTab": 3
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 299.5
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -156,17 +156,24 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "715ed70115442f2c",
+  "active": "2038dba3577f13f4",
   "lastOpenFiles": [
     "Recommender System/Matrix Factorization techniques for recommender systems.md",
-    "desktop.ini",
     "Text-To-Speech/Tacotron; Towards End-to-End Speech Synthesis.md",
+    "resources/Tactron_Table1.png",
+    "resources/Tacotron_Structure2.png",
+    "resources/Tacotron_Structure.png",
+    "resources/Tacotron_attention.png",
+    "resources/Tacotron_Result2.png",
+    "resources/Tacotron_Result1.png",
+    "resources/Tacotron_decoder.png",
+    "resources/Tacotron_Figure2.png",
+    "resources/Tacotron_Figure1.png",
+    "desktop.ini",
     "README.md",
     "무제 파일.canvas",
     "2023-06-28.md",
     "resources/MF_Figure2.png",
-    "resources/MF_Figure1.png",
-    "Pasted image 20230628013301.png",
     "무제 파일.md",
     "N.md",
     "Computer Vision",
