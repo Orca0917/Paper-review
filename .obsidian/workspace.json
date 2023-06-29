@@ -4,15 +4,19 @@
     "type": "split",
     "children": [
       {
-        "id": "0595717e3d426bdd",
+        "id": "ce090fb5ad261393",
         "type": "tabs",
         "children": [
           {
-            "id": "2038dba3577f13f4",
+            "id": "279533a6d180cc83",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {}
+              "type": "markdown",
+              "state": {
+                "file": "README.md",
+                "mode": "source",
+                "source": false
+              }
             }
           }
         ]
@@ -61,12 +65,12 @@
               "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 231.5
+    "width": 338.5,
+    "collapsed": true
   },
   "right": {
     "id": "442d5bf4c317f96d",
@@ -82,6 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -98,6 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
+                "file": "README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -119,7 +125,9 @@
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {}
+              "state": {
+                "file": "README.md"
+              }
             }
           },
           {
@@ -129,21 +137,13 @@
               "type": "advanced-tables-toolbar",
               "state": {}
             }
-          },
-          {
-            "id": "92a9af65a0c3880c",
-            "type": "leaf",
-            "state": {
-              "type": "git-history-view",
-              "state": {}
-            }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 299.5
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -156,24 +156,24 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "2038dba3577f13f4",
+  "active": "279533a6d180cc83",
   "lastOpenFiles": [
-    "Recommender System/Matrix Factorization techniques for recommender systems.md",
+    "Recommender System/Factorization Machines.md",
+    "README.md",
     "Text-To-Speech/Tacotron; Towards End-to-End Speech Synthesis.md",
-    "resources/Tactron_Table1.png",
-    "resources/Tacotron_Structure2.png",
-    "resources/Tacotron_Structure.png",
-    "resources/Tacotron_attention.png",
-    "resources/Tacotron_Result2.png",
-    "resources/Tacotron_Result1.png",
-    "resources/Tacotron_decoder.png",
-    "resources/Tacotron_Figure2.png",
+    "Recommender System/AutoRec; Autoencoders Meet Collaborative Filtering.md",
+    "Recommender System/Matrix Factorization techniques for recommender systems.md",
+    "resources/Tacotron_Table1.png",
+    "resources/AutoRec_Figure2.png",
+    "resources/AutoRec_Table1.png",
+    "resources/AutoRec_Figure1.png",
     "resources/Tacotron_Figure1.png",
     "desktop.ini",
-    "README.md",
     "무제 파일.canvas",
     "2023-06-28.md",
     "resources/MF_Figure2.png",
+    "resources/MF_Figure1.png",
+    "Pasted image 20230628013301.png",
     "무제 파일.md",
     "N.md",
     "Computer Vision",
