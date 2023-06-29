@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Text-To-Speech/Tacotron; Towards End-to-End Speech Synthesis.md",
+                "file": "README.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Text-To-Speech/Tacotron; Towards End-to-End Speech Synthesis.md",
+                "file": "README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Text-To-Speech/Tacotron; Towards End-to-End Speech Synthesis.md",
+                "file": "README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Text-To-Speech/Tacotron; Towards End-to-End Speech Synthesis.md"
+                "file": "README.md"
               }
             }
           },
@@ -157,10 +157,10 @@
   },
   "active": "cad0c0abc9eea5f4",
   "lastOpenFiles": [
+    "Text-To-Speech/Tacotron; Towards End-to-End Speech Synthesis.md",
     "Recommender System/AutoRec; Autoencoders Meet Collaborative Filtering.md",
     "README.md",
     "Recommender System/Factorization Machines.md",
-    "Text-To-Speech/Tacotron; Towards End-to-End Speech Synthesis.md",
     "Recommender System/Matrix Factorization techniques for recommender systems.md",
     "resources/Tacotron_Table1.png",
     "resources/AutoRec_Figure2.png",
