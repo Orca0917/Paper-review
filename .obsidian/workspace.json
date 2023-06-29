@@ -4,16 +4,16 @@
     "type": "split",
     "children": [
       {
-        "id": "ce090fb5ad261393",
+        "id": "e41b1409277edc37",
         "type": "tabs",
         "children": [
           {
-            "id": "279533a6d180cc83",
+            "id": "cad0c0abc9eea5f4",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "README.md",
+                "file": "Text-To-Speech/Tacotron; Towards End-to-End Speech Synthesis.md",
                 "mode": "source",
                 "source": false
               }
@@ -69,8 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 338.5,
-    "collapsed": true
+    "width": 338.5
   },
   "right": {
     "id": "442d5bf4c317f96d",
@@ -86,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "README.md",
+                "file": "Text-To-Speech/Tacotron; Towards End-to-End Speech Synthesis.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "README.md",
+                "file": "Text-To-Speech/Tacotron; Towards End-to-End Speech Synthesis.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "README.md"
+                "file": "Text-To-Speech/Tacotron; Towards End-to-End Speech Synthesis.md"
               }
             }
           },
@@ -156,12 +155,12 @@
       "table-editor-obsidian:Advanced Tables Toolbar": false
     }
   },
-  "active": "279533a6d180cc83",
+  "active": "cad0c0abc9eea5f4",
   "lastOpenFiles": [
-    "Recommender System/Factorization Machines.md",
-    "README.md",
-    "Text-To-Speech/Tacotron; Towards End-to-End Speech Synthesis.md",
     "Recommender System/AutoRec; Autoencoders Meet Collaborative Filtering.md",
+    "README.md",
+    "Recommender System/Factorization Machines.md",
+    "Text-To-Speech/Tacotron; Towards End-to-End Speech Synthesis.md",
     "Recommender System/Matrix Factorization techniques for recommender systems.md",
     "resources/Tacotron_Table1.png",
     "resources/AutoRec_Figure2.png",
