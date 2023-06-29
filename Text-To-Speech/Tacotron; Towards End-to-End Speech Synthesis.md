@@ -1,3 +1,5 @@
+#TextToSpeech #Tacotron #Acoustic_Model #Attention
+
 
 # Abstact
 
@@ -155,13 +157,13 @@ _높은 수준에서 바라보면, 우리의 모델은 문자를 입력으로 �
 We describe these components below.
 _우리는 이 구성요소들을 아래에서 상세하게 설명한다._
 
-![Figure 1: 모델 구조. 모델은 문자를 입력으로 받아 출력으로 입력에 상응하는 spectrogram을 생성하였고, spectrogram은 이후 Griffin-Lim 알고리즘을 사용하여 음성으로 변환된다.](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3c56d324-5eab-44ed-a233-53d2b1c172e7/Untitled.png)
+![[Tacotron_Figure1.png| 800]]
 
 Figure 1: 모델 구조. 모델은 문자를 입력으로 받아 출력으로 입력에 상응하는 spectrogram을 생성하였고, spectrogram은 이후 Griffin-Lim 알고리즘을 사용하여 음성으로 변환된다.
 
 ### 3.1 CBHG Module
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/f31491c6-ba36-4e82-b8be-b8aec4092d9a/Untitled.png)
+![[Tacotron_Figure2.png| 800]]
 
 We first describe a building block dubbed CBHG, illustrated in Figure 2.
 _우리는 CBHG라고 부르는 building block을 Figure 2에 묘사했다._
@@ -172,7 +174,7 @@ _CBHG는 1D Convolution 필터로 쌓아올려져 있고, 이후에는 highway n
 CBHG is a powerful module for extracting representations from sequences.
 _CBHG는 sequence로 부터 표현(representation)을 추출하는 강력한 모듈이다._
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/91f3af94-822b-4397-b88d-b320ea744268/Untitled.png)
+![[Tacotron_Structure.png| 800]]
 
 The input sequence is first convolved with $K$ sets of 1-D convolutional filters, where the $k$-th set contains $C_k$ filters of width $k$ (i.e. $k$ = 1, 2, . . . , $K$).
 _입력 sequence는 먼저 $K$개의 1D Convolution 필터들의 집합과 연산된다. 여기서 $k$ 번째 집합은 $C_k$ 개의 너비가 $k$인 필터를 가지고 있다._
@@ -211,7 +213,7 @@ _우리는 위의 수정사항들이 일반화 성능에 기여하였다는 것�
 
 ## 3.2 Encoder
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/d23f5dd9-8f86-4fe5-b474-368de3883f05/Untitled.png)
+![[Tacotron_Structure2.png| 800]]
 
 The goal of the encoder is to extract robust sequential representations of text.
 _Encoder의 목표는 텍스트의 robust한 sequential representation을 추출하는 것이다. (텍스트의 특징 추출)_
@@ -231,13 +233,12 @@ _CBHG 모듈은 prenet의 출력을 attention 모듈이 사용하는 최종 enco
 We found that this CBHG-based encoder not only reduces overfitting, but also makes fewer mispronunciations than a standard multi-layer RNN encoder (see our linked page of audio samples).
 _우리는 이 CBHG기반 인코더가 오버피팅을 줄여줄 뿐만 아니라, 표준 다층 RNN인코더에 비해 발음을 잘못하는 경우를 더 줄여줌을 확인하였다._
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2b8f77c6-3e54-448f-a969-2f30aa7259ea/Untitled.png)
-
+![[Tacotron_attention.png| 800]]
 <br>
 
 ## 3.3 Decoder
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/8e15365e-ebc8-4e52-bef0-7ab15f3886d9/Untitled.png)
+![[Tacotron_decoder.png| 800]]
 
 We use a content-based tanh attention decoder (see e.g. Vinyals et al. (2015)), where a stateful recurrent layer produces the attention query at each decoder time step.
 _우리는 컨텐츠 기반 tanh attention decoder를 사용하였으며, 여기서 Stateful Recurrent 레이어는 각 decoder time step에서 attention 쿼리를 생성한다._
@@ -406,8 +407,7 @@ _우리는 Tacotron을 internal North American English데이터셋을 사용하�
 The phrases are text normalized, e.g. “16” is converted to “sixteen”.
 _각 단어들은 전처리를 적용하였다. 16을 “십육”으로 변경_
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/61768975-5831-479e-b868-e833a18d944d/Untitled.png)
-
+![[Tactron_Table1.png| 800]]
 ## 5.1 Ablation Analysis
 
 We conduct a few ablation studies to understand the key components in our model.
@@ -464,7 +464,7 @@ _실제 합성된 신호를 들어보면, 우리는 noisy한 alignment가 잘 �
 The CBHG encoder reduces overfitting and generalizes well to long and complex phrases.
 _이는 CBHG encoder가 오버피팅을 줄이고 길고 복잡한 구문에 대해 일반화 성능이 좋다는 것을 보여준다._
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/9e90605b-5e09-47f0-9eda-dc1f64b9035a/Untitled.png)
+![[Tacotron_Result1.png| 800]]
 
 Figures 4(a) and 4(b) demonstrate the benefit of using the post-processing net.
 _Figure 4의 (a), (b)는 후처리 신경망을 사용하는 것의 장점을 보여준다._
@@ -494,7 +494,7 @@ _MOS를 계산할 때, 오직 헤드폰을 사용해 평가한 것만 포함시�
 We compare our model with a parametric (based on LSTM (Zen et al., 2016)) and a concatenative system (Gonzalvo et al., 2016), both of which are in production.
 _우리의 모델을 생성과 관련된 parametric system과 concatenative system을 사용해 비교하였다._
 
-![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/2d9a760c-e9d7-4b1d-816b-ee4b693eff30/Untitled.png)
+![[Tacotron_Result2.png| 800]]
 
 As shown in Table 2, Tacotron achieves an MOS of 3.82, which outperforms the parametric system.
 _Table 2를 보면 알 수 있듯이, Tacotron은 MOS 3.82점을 달성하였고 이는 parametric system을 능가하는 수준이다._
