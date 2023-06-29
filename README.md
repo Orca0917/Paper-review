@@ -13,18 +13,18 @@ If you use the contents, please refer to the original paper.
 <br>
 
 ## Recommender System
-|                       Paper name                        | Year |  Status   |                                  Links                                   |
-|:-------------------------------------------------------:|:----:|:---------:|:------------------------------------------------------------------------:|
-| Matrix Factorization techniques for recommender systems | 2009 |  `Done`   | https://datajobs.com/data-science-repo/Recommender-Systems-[Netflix].pdf |
-|   AutoRec: Autoencoders Meet Collaborative Filtering    | 2015 |  `Done`   |         http://users.cecs.anu.edu.au/~u5098633/papers/www15.pdf          |
-|                 Factorization Machines                  | 2012 | `Reading` |        https://www.csie.ntu.edu.tw/~b97053/paper/Rendle2010FM.pdf        |
+|                       Paper name                        | Year |  Status   |                                      Links                                      |
+|:-------------------------------------------------------:|:----:|:---------:|:-------------------------------------------------------------------------------:|
+| Matrix Factorization techniques for recommender systems | 2009 |  `Done`   | [PDF](https://datajobs.com/data-science-repo/Recommender-Systems-[Netflix].pdf) |
+|   AutoRec: Autoencoders Meet Collaborative Filtering    | 2015 |  `Done`   |         [PDF](http://users.cecs.anu.edu.au/~u5098633/papers/www15.pdf)          |
+|                 Factorization Machines                  | 2012 | `Reading` |        [PDF](https://www.csie.ntu.edu.tw/~b97053/paper/Rendle2010FM.pdf)        |
 
 <br>
 
 ## Text To Speech
-|                  Paper name                   | Year | Status |              Links               |
-|:---------------------------------------------:|:----:|:------:|:--------------------------------:|
-| Tacotron: Towards End-to-End Speech Synthesis | 2017 | `Done` | https://arxiv.org/abs/1703.10135 |
+|                  Paper name                   | Year | Status |                  Links                  |
+|:---------------------------------------------:|:----:|:------:|:---------------------------------------:|
+| Tacotron: Towards End-to-End Speech Synthesis | 2017 | `Done` | [PDF](https://arxiv.org/abs/1703.10135) |
 
 <br>
 
