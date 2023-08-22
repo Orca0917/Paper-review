@@ -2,8 +2,6 @@
 
 This repository contains a summary of what I have read and learned from deep learning papers related to artificial intelligence. It mainly contains the translation of the paper into Korean and is gradually trying to contain the actual Python implementation code. The implemented ipynb or python files will be updated as soon as they are created. The main areas are the Recommender system and Text-to-Speech, and will review important papers published in other areas.
 
-It is optimized for Obsidian applications and can be read with better quality by cloning and checking with obsidian's valut.
-
 <br>
 
 **⚠ Facing INCORRECT information ⚠**   
