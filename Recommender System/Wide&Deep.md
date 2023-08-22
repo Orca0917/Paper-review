@@ -106,10 +106,10 @@ A query, which can include various user and contextual features, is generated wh
 "쿼리"는 다양한 유저와 문맥적 피처들을 포함할 수 있는 것으로, 유저가 앱스토어에 방문하게 되면 생성된다.  
 
 The recommender system returns a list of apps (also referred to as impressions) on which users can perform certain actions such as clicks or purchases.  
-추천시스템은 앱들의 목록(=impression)을 반환하게 되며, 이 목록은 유저의 클릭 또는 구매로 이어질 수 있게 된다.  
+추천시스템은 보여진 앱들의 목록(=impression)을 반환하게 되며, 이 목록은 유저의 클릭 또는 구매로 이어질 수 있게 된다.  
 
 These user actions, along with the queries and impressions, are recorded in the logs as the training data for the learner.  
-이러한 유저의 행동은 쿼리와 추천된 앱들의 목록과 함께 로그로 기록되어 학습 데이터로 사용되게 된다.  
+이러한 유저의 행동은 쿼리와 보여진 앱들의 목록과 함께 로그로 기록되어 학습 데이터로 사용되게 된다.  
 
 Since there are over a million apps in the database, it is intractable to exhaustively score every app for every query within the serving latency requirements (often O(10) milliseconds).  
 데이터베이스에는 수백만개의 앱이 존재하기 때문에, 주어진 조건인 아주 짧은 시간동안 모든 쿼리에 대한 모든 정확한 점수를 추적하기는 어렵다.  
@@ -234,3 +234,164 @@ $$P(Y=1\vert\mathbf{x}) = \sigma(\mathbf{w}^\top_{wide}[\mathbf{x}, \phi(\mathbf
 - $\mathbf{w}_{wide}$ : wide 모델에 대한 가중치 벡터
 - $\mathbf{w}_{deep}$ : Deep 컴포넌트의 최종 출력 $a^{(l_f)}$ 에 사용될 가중치
 
+<br/>
+
+# 4. SYSTEM IMPLEMENTATION
+
+![wide&deep-figure3](../resources/wide&deep-figure3.png)
+
+The implementation of the apps recommendation pipeline consists of three stages: data generation, model training, and model serving as shown in Figure 3.  
+애플리케이션 추천시스템의 파이프라인은 3단계로 구성되어 있다: Figure3과 같이 데이터 생성, 모델 학습, 모델 배포로 나누어진다.
+
+## 4.1 Data Generation
+
+In this stage, user and app impression data within a period of time are used to generate training data.  
+이번 단계에서는 학습에 사용하기 위한 데이터를 생성하기 위해 일정 기간동안 수집된 유저의 정보와 앱 설치 및 추천 내역을 사용한다.
+
+Each example corresponds to one impression.  
+각 예시들은 하나의 보여진 앱들에 대응된다. -- check
+
+The label is app acquisition: 1 if the impressed app was installed, and 0 otherwise.  
+타겟 값인 라벨은 앱을 설치한 여부를 나타낸다: 보여진 앱이 실제로 설치되었다면 1로, 그렇지 않다면 0으로 표시한다.
+
+Vocabularies, which are tables mapping categorical feature strings to integer IDs, are also generated in this stage.  
+카테고리형 변수를 숫자형 ID로 매핑해주는 부분도 이곳에서 진행된다.
+
+The system computes the ID space for all the string features that occurred more than a minimum number of times.  
+시스템은 모든 문자열 피처에 대해서 최소 횟수 이상만큼 등장한 피처들만 추출해서 ID 를 생성해낸다.
+
+Continuous real-valued features are normalized to $[0, 1]$ by mapping a feature value $x$ to its cumulative distribution function $P(X \leq x)$, divided into $n_q$ quantiles.  
+연속형 실수값 $x$ 는 누적 확률 분포인 $P(X \leq x)$ 에 매핑되고, $n_q$ 로 나누어 [0, 1] 사이로 정규화시킨다. 
+
+The normalized value is $\frac{i−1}{n_q-1}$ for values in the $i$-th quantiles.  
+정규화된 값은 $i$번째 사분위에 대해 $\frac{i−1}{n_q-1}$ 값이 도출된다.
+
+Quantile boundaries are computed during data generation.  
+사분위수의 경계는 데이터를 생성하는 과정에서 계산되어진다.
+
+## 4.2 Model Training
+
+![Wide&Deep-Figure4](../resources/wide&deep-figure4.png)
+
+The model structure we used in the experiment is shown in Figure 4.  
+우리가 실험에 사용한 모델의 구조는 Figure 4에 나타나있다.
+
+During training, our input layer takes in training data and vocabularies and generate sparse and dense features together with a label.  
+학습을 하는 동안, 우리의 입력 레이어는 학습데이터와 단어 그리고 생성한 희소하고 dense 한 feature를 입력으로 받는다.
+
+The wide component consists of the cross-product transformation of user installed apps and impression apps.  
+Wide 컴포넌트는 유저가 설치한 앱과 보여진 앱간의 cross product transformation으로 구성되어 있다.
+
+For the deep part of the model, A 32 dimensional embedding vector is learned for each categorical feature.  
+모델의 Deep 파트에서는 각 카테고리 피처마다 32차원의 임베딩 벡터가 학습된다.
+
+We concatenate all the embeddings together with the dense features, resulting in a dense vector of approximately 1200 dimensions.  
+우리는 모든 임베딩을 이어붙여 약 1200차원에 다다르는 dense한 벡터를 생성하였다.
+
+The concatenated vector is then fed into 3 ReLU layers, and finally the logistic output unit.  
+이어붙인 벡터는 3개의 ReLU 레이어로 전달되며, 마지막에는 로지스틱 파트를 거친다.
+
+
+The Wide & Deep models are trained on over 500 billion examples.  
+Wide&Deep 모델을 학습시키는데에는 5000억개의 애플리케이션 샘플들이 사용되었다.
+
+Every time a new set of training data arrives, the model needs to be retrained.  
+매번 새로운 데이터가 도착할 때마다, 모델은 재학습이 되어야한다.
+
+However, retraining from scratch every time is computationally expensive and delays the time from data arrival to serving an updated model.  
+하지만, 밑바닥부터 재학습 시키는 것은 계산적으로 너무 비싸고, 새로운 데이터를 포함시켜 학습을 하는데 너무 많은 시간을 들이게 한다.
+
+To tackle this challenge, we implemented a warm-starting system which initializes a new model with the embeddings and the linear model weights from the previous model.  
+이러한 어려움을 다루기 위해, 우리는 warm-starting 시스템을 구축하였다. warm-starting 시스템은 이전 모델의 임베딩과 선형 모델의 가중치를 그대로 가져와서 사용하는 것을 말한다.
+
+Before loading the models into the model servers, a dry run of the model is done to make sure that it does not cause problems in serving live traffic.  
+모델을 모델 배포자들에게 전달하기 전, 실시간 트래픽에서 문제가 되지 않음을 확인하는 dry-run을 진행한다.
+
+We empirically validate the model quality against the previous model as a sanity check.  
+우리는 선험적으로 이전 모델의 결과와 현재 모델 결과의 성능을 비교하며 검증을 진행했다.
+
+## 4.3. Model Serving
+
+Once the model is trained and verified, we load it into the model servers.  
+모델이 학습되고 검증까지 완료되었다면, 우리는 모델을 모델 배포자들에게 전달한다.
+
+For each request, the servers receive a set of app candidates from the app retrieval system and user features to score each app.  
+각 요청마다 배포자들은 애플리케이션 추출시스템으로 부터 추천될 앱의 후보를 받는다.
+
+Then, the apps are ranked from the highest scores to the lowest, and we show the apps to the users in this order.  
+그러고 나서, 앱들은 모델로 계산된 점수가 감소하는 순서대로 나열하고 이 순서를 그대로 유저에게 전달해서 보여준다.
+
+The scores are calculated by running a forward inference pass over the Wide & Deep model.  
+여기서 말하는 점수는 Wide & Deep 모델의 추론 과정을 거쳐 계산된 점수를 의미한다.
+
+In order to serve each request on the order of 10 ms, we optimized the performance using multithreading parallelism by running smaller batches in parallel, instead of scoring all candidate apps in a single batch inference step.  
+우리는 모델이 배포되어서 사용자에게 결과가 전달되기 까지 10ms 이하로 계산이 완료되기를 원했기 때문에, 병렬 멀티 스레딩 기법을 적용하였다.
+
+<br/>
+
+# 5. EXPERIMENT RESULTS
+
+To evaluate the effectiveness of Wide & Deep learning in a real-world recommender system, we ran live experiments and evaluated the system in a couple of aspects: app acquisitions and serving performance.  
+Wide & Deep 학습 모델을 실생활의 추천시스템에 적용했을 때의 효과를 알아보기 위해, 모델을 실생활에 배포하였고 2가지 양상에서 살펴보았다: 앱의 설치 여부와 배포 성능
+
+## 5.1 App Acquisitions
+
+We conducted live online experiments in an A/B testing framework for 3 weeks.  
+우리는 3주동안 A/B 테스팅 환경에서 온라인 실험을 진행했다.
+
+For the control group, 1% of users were randomly selected and presented with recommendations generated by the previous version of ranking model, which is a highly-optimized wide-only logistic regression model with rich cross-product feature transformations.  
+전체 유저에서 1%의 랜덤하게 선택된 유저인 대조군은 이전의 단순한 선형구조를 사용한 랭킹모델을 사용해 추천을 해주었다. 선형구조는 cross-product transformation을 적용한 로지스틱 회귀 모델이다.
+
+For the experiment group, 1% of users were presented with recommendations generated by the Wide & Deep model, trained with the same set of features.  
+실험군에서 임의로 선택된 1%의 유저들은 선형 모델과 동일한 피처로 학습된 Wide & Deep 모델에서 생성된 추천 결과를 받았다.
+
+![Wide&Deep-Table1](../resources/Wide&Deep-Table1.png)
+
+As shown in Table 1, Wide & Deep model improved the app acquisition rate on the main landing page of the app store by +3.9% relative to the control group (statistically significant).  
+표1에서 보여지는 것과 같이, Wide & Deep 모델이 메인 랜딩페이지에 존재하는 앱의 설치율을 향상시켰다. 더 상세하게, 대조군보다 3.9% 높은 설치율을 보여주었다.
+
+The results were also compared with another 1% group using only the deep part of the model with the same features and neural network structure, and the Wide & Deep mode had +1% gain on top of the deep-only model (statistically significant).  
+우리는 또 다른 1%의 그룹으로 오직 Deep 파트만 사용해 추천을 해준 그룹을 만들어서 비교하였다. 이때는, Wide & Deep 모델과 비교하였을 때, Deep 파트는 1% 떨어지는 수치를 보여주었다.
+
+Besides online experiments, we also show the Area Under Receiver Operator Characteristic Curve (AUC) on a holdout set offline.  
+온라인 실험뒤에서 우리는 오프라인에서 확인한 AUC를 확인하였다.
+
+While Wide & Deep has a slightly higher offline AUC, the impact is more significant on online traffic.  
+Wide & Deep 모델이 조금 더 높은 오프라인 AUC를 보여주었으며, 온라인 트래픽에서는 더욱 두드러지게 보여졌다.
+
+One possible reason is that the impressions and labels in offline data sets are fixed, whereas the online system can generate new exploratory recommendations by blending generalization with memorization, and learn from new user responses.  
+가능성 있는 한가지 원인으로는 오프라인에서는 보여지는 앱과 라벨이 고정되어있는 반면, 온라인 시스템에서는 기억으로 새로운 추천이 발생할 수 있고, 유저의 새로운 반응을 학습할 수 있기 때문이라고 볼 수 있다.
+
+## 5.2 Serving Performance
+
+Serving with high throughput and low latency is challenging with the high level of traffic faced by our commercial mobile app store.  
+많은 양의 입력을 사용하는데 낮은 지연시간을 갖는 것은 어려운 일이고, 우리가 직면한 모바일 앱 스토어는 이러한 트래픽을 감당해야만 했다.
+
+At peak traffic, our recommender servers score over 10 million apps per second.  
+트래픽이 가장 많을 때, 우리의 추천시스템은 초마다 100억개의 앱에 대한 점수를 계산해야만 한다.
+
+With single threading, scoring all candidates in a single batch takes 31 ms.  
+싱글 스레드에서, 모든 후보에 점수를 매길 때는 31ms가 소모되었다.
+
+![Wide&Deep-Table2](../resources/Wide&Deep-Table2.png)
+
+We implemented multithreading and split each batch into smaller sizes, which significantly reduced the client-side latency to 14 ms (including serving overhead) as shown in Table 2.  
+우리는 멀티스레딩과 더 작은 배치로 나누어줌으로서, 표2에 보이는 것과 같이 클라이언트 측의 지연시간을 14ms로 줄였다.
+
+<br/>
+
+# 7. CONCLUSION
+Memorization and generalization are both important for recommender systems.  
+추천시스템에서 기억(Memorization)과 일반화(Generalization)은 모두 중요하다.
+
+Wide linear models can effectively memorize sparse feature interactions using cross-product feature transformations, while deep neural networks can generalize to previously unseen feature interactions through low-dimensional embeddings.  
+Wide 선형 모델은 cross-product transformation을 사용하여 희소한 피처 상호작용을 효과적으로 기억할 수 있는 반면, 딥러닝 신경망 구조는 저차원 임베딩을 통해 이전에 보지 못했던 피처간의 상호작용으로 일반화시키는 것이 가능했다.
+
+We presented the Wide & Deep learning framework to combine the strengths of both types of model.  
+우리는 Wide 컴포넌트의 강점과 Deep 컴포넌트의 강점을 결합하기 위한 Wide & Deep 학습 프레임워크를 제안하였다.
+
+We productionized and evaluated the framework on the recommender system of Google Play, a massive-scale commercial app store.  
+우리는 대규모 상용 앱 스토어인 구글 플레이의 추천시스템으로 Wide & Deep 을 배포하보고 평가를 해보았다.
+
+Online experiment results showed that the Wide & Deep model led to significant improvement on app acquisitions over wide-only and deep-only models.  
+온라인 실험 결과에서 Wide & Deep 모델이 단일 Wide 모델, 단일 Deep 모델보다 앱 설치율을 크게 개선시킨 것을 보여주었다.
